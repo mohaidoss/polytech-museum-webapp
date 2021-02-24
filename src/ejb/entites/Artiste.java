@@ -15,6 +15,7 @@ public class Article implements Serializable{
 		return this.Num;
 	}
 	
+	@Column private int Num;
 	@Column private String Nom;
-	@Column private int Prenom;
+	@Column private String Prenom;
 }
