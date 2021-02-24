@@ -20,7 +20,7 @@ public class Oeuvre implements Serializable{
 	@Column private int annee;
 	@ManyToMany(fetch=FetchType.EAGER) Set<Categorie> categories;
 	@ManyToOne(fetch=FetchType.EAGER) private Artiste artiste;
-	@Column private int Score;
+	@Column private int score;
 	private int aime;
 	private int aimepas;
 	private int sansavis;
