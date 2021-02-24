@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class Article implements Serializable{
+public class Categorie implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id @GeneratedValue
