@@ -18,4 +18,7 @@ public class Artiste implements Serializable{
 	@Column private int Num;
 	@Column private String Nom;
 	@Column private String Prenom;
+	@OneToMany(fetch=FetchType.EAGER) Set<Oeuvre> oeuvres;
+	
+
 }
