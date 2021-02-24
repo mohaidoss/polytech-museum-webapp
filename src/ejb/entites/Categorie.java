@@ -17,4 +17,5 @@ public class Categorie implements Serializable{
 	
 	@Column private String Intitule;
 	
+	@ManyToMany(mappedBy="categories") Set<Oeuvre> oeuvres;
 }
