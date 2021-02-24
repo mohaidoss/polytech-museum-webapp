@@ -18,4 +18,10 @@ public class Oeuvre implements Serializable{
 	@Column(length = 100) private String URL;
 	@Column private String titre;
 	@Column private int annee;
+	@ManyToMany(fetch=FetchType.EAGER) Set<Categorie> categories;
+	@ManyToOne(fetch=FetchType.EAGER) private Artiste artiste;
+	@Column private int Score;
+	private int aime;
+	private int aimepas;
+	private int sansavis;
 }
