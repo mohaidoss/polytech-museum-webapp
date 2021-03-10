@@ -8,10 +8,14 @@ import javax.persistence.*;
 @Entity
 @Table
 public class Categorie implements Serializable{
+	public void setIntitule(String intitule) {
+		Intitule = intitule;
+	}
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id @GeneratedValue
-	public int getIntitule(){
+	public String getIntitule(){
 		return this.Intitule;
 	}
 	

@@ -16,9 +16,11 @@ public class Main {
 	
 	public static void main(String[] args) {
 	  
-		InitialContext ctx = new InitialContext();
-		System.out.println("Accès au service distant") ;
-		
-  }
-
+		try {
+			InitialContext ctx = new InitialContext();
+			System.out.println("Accès au service distant") ;
+	    } catch(NamingException e) {
+	        System.err.println("Erreur:"+e.getMessage() ) ;
+		}
+	}
 }

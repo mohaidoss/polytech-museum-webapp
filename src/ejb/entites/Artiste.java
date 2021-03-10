@@ -16,6 +16,22 @@ public class Artiste implements Serializable{
 	}
 	
 	@Column private int Num;
+	public String getNom() {
+		return Nom;
+	}
+	public void setNom(String nom) {
+		Nom = nom;
+	}
+	public String getPrenom() {
+		return Prenom;
+	}
+	public void setPrenom(String prenom) {
+		Prenom = prenom;
+	}
+	public void setNum(int num) {
+		Num = num;
+	}
+
 	@Column private String Nom;
 	@Column private String Prenom;
 }
