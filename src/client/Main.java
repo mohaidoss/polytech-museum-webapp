@@ -5,6 +5,9 @@ import java.util.Collection;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import ejb.entites.*;
+import ejb.sessions.*;
+
 public class Main {
    static String urlDoisneau1="https://media.timeout.com/images/103443148/750/422/image.jpg" ;
    static String urlDoisneau2="http://www.christies.com/lotfinderimages/d42621/d4262145r.jpg" ;

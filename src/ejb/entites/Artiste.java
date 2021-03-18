@@ -11,11 +11,23 @@ public class Artiste implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id @GeneratedValue
+	@Column private int Num;
+	@OneToMany(mappedBy="artiste") private Set<Oeuvre> oeuvres;
+	@Column private String Nom;
+	@Column private String Prenom;
+	
 	public int getNum(){
 		return this.Num;
 	}
 	
-	@Column private int Num;
+	public Set<Oeuvre> getOeuvres() {
+		return oeuvres;
+	}
+
+	public void setOeuvres(Set<Oeuvre> oeuvres) {
+		this.oeuvres = oeuvres;
+	}
+
 	public String getNom() {
 		return Nom;
 	}
@@ -31,7 +43,4 @@ public class Artiste implements Serializable{
 	public void setNum(int num) {
 		Num = num;
 	}
-
-	@Column private String Nom;
-	@Column private String Prenom;
 }

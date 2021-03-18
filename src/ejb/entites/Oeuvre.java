@@ -10,20 +10,23 @@ import javax.persistence.*;
 public class Oeuvre implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Id @GeneratedValue
+	
 	public int getId(){
 		return this.Id;
 	}
+	@Id @GeneratedValue
 	@Column private int Id;
-	@Column(length = 100) private String URL;
+	@Column(length=100) private String URL;
 	@Column private String titre;
 	@Column private int annee;
-	@ManyToMany(fetch=FetchType.EAGER) Set<Categorie> categories;
+	
+	@ManyToMany(fetch=FetchType.EAGER) private Set<Categorie> categories;
 	@ManyToOne(fetch=FetchType.EAGER) private Artiste artiste;
 	@Column private int score;
 	private int aime;
 	private int aimepas;
 	private int sansavis;
+
 	
 	public String getURL() {
 		return URL;
@@ -55,6 +58,16 @@ public class Oeuvre implements Serializable{
 	public void setScore(int score) {
 		this.score = score;
 	}
+	public void setId(int id) {
+		Id = id;
+	}
+	
+	public Set<Categorie> getCategories() {
+		return categories;
+	}
+	public void setCategories(Set<Categorie> categories) {
+		this.categories = categories;
+	}
 	public int getAime() {
 		return aime;
 	}
@@ -73,8 +86,4 @@ public class Oeuvre implements Serializable{
 	public void setSansavis(int sansavis) {
 		this.sansavis = sansavis;
 	}
-	public void setId(int id) {
-		Id = id;
-	}
-	
 }

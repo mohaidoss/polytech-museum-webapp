@@ -1,2 +1,4 @@
-/ejb/
+/application.xml
 /client/
+/ejb/
+/web/
