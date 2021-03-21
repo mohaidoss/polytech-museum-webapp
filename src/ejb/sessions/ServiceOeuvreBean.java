@@ -5,13 +5,13 @@ import java.util.Collection;
 import javax.persistence.*;
 import ejb.entites.*;
 
-@javax.ejb.Stateless()
+@javax.ejb.Stateless
 public class ServiceOeuvreBean
 implements ServiceOeuvreLocal, ServiceOeuvreRemote	{
 @PersistenceContext(unitName="musees")
 protected EntityManager em;
 	@Override
-	public void creerOeuvre(int Id, String URL, String titre, int annee, int score, int aime, int aimepas, int sansavis)
+	public void creerOeuvre(int Id, String URL, String titre, int annee, int score, int aime, int aimepas, int sansavis, int artiste_num)
 			throws OeuvreDejaCreeException {
 		Oeuvre o = null;
 		try{
@@ -24,6 +24,11 @@ protected EntityManager em;
 			o.setURL(URL);
 			o.setTitre(titre);
 			o.setAnnee(annee);
+			try {
+				o.setArtiste(this.getArtiste(artiste_num));
+			} catch (ArtisteInconnuException e1) {
+				System.err.println("Artiste inconnu");
+			}
 			em.persist(o);
 		}
 		// TODO Auto-generated method stub
@@ -69,13 +74,11 @@ protected EntityManager em;
 
 	@Override
 	public void creerArtiste(int Num, String nom, String prenom) throws ArtisteDejaCreeException {
-		Artiste a=null;
 		try{
-			a = this.getArtiste(Num);
-			if (a!=null)
-				throw new ArtisteDejaCreeException();
+			this.getArtiste(Num);
+			throw new ArtisteDejaCreeException();
 		} catch (ArtisteInconnuException e){
-			a = new Artiste();
+			Artiste a = new Artiste();
 			a.setNum(Num);
 			a.setNom(nom);
 			a.setPrenom(prenom);
@@ -85,7 +88,7 @@ protected EntityManager em;
 
 	@Override
 	public Artiste getArtiste(int Num) throws ArtisteInconnuException {
-		Artiste a;
+		Artiste a = null;
 		a = (Artiste) em.find(Artiste.class, Num);
 		if (a==null)
 			throw new ArtisteInconnuException();
@@ -130,6 +133,7 @@ protected EntityManager em;
 			o.setAimepas(o.getAimepas() + 1);
 		else if(avis == Vote.SANSAVIS)
 			o.setSansavis(o.getSansavis() + 1);
+		em.persist(o);
 	}
 
 }

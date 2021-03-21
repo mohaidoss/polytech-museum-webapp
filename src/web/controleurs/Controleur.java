@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-@WebServlet(value={})
+@WebServlet(value={"oeuvre","categorie"})
 public class Controleur extends HttpServlet {
   private static final long serialVersionUID = 1L;
   

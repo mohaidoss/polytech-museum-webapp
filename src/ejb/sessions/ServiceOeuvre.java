@@ -6,7 +6,7 @@ import java.util.Collection;
 public interface ServiceOeuvre {
 	
 	//Administrateur
-	public void creerOeuvre(int Id,String URL,String titre,int annee,int score,int aime,int aimepas,int sansavis) throws OeuvreDejaCreeException;
+	public void creerOeuvre(int Id,String URL,String titre,int annee,int score,int aime,int aimepas,int sansavis, int artiste_num) throws OeuvreDejaCreeException;
 	public Oeuvre getOeuvre(int Id) throws OeuvreInconnueException;
 	public void creerCategorie(String Intitule) throws CategorieDejaCreeException;
 	public Categorie getCategorie(String Intitule) throws CategorieInconnueException;

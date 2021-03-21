@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Artiste implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Id @GeneratedValue
+	@Id
 	@Column private int Num;
 	@OneToMany(mappedBy="artiste") private Set<Oeuvre> oeuvres;
 	@Column private String Nom;

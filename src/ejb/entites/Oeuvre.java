@@ -14,7 +14,7 @@ public class Oeuvre implements Serializable{
 	public int getId(){
 		return this.Id;
 	}
-	@Id @GeneratedValue
+	@Id
 	@Column private int Id;
 	@Column(length=100) private String URL;
 	@Column private String titre;

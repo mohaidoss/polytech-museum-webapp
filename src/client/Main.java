@@ -22,8 +22,31 @@ public class Main {
 		try {
 			InitialContext ctx = new InitialContext();
 			System.out.println("Accès au service distant") ;
-	    } catch(NamingException e) {
-	        System.err.println("Erreur:"+e.getMessage() ) ;
+			String adresse = "ejb:musees/museesSessions//ServiceOeuvreBean!ejb.sessions.ServiceOeuvreRemote";
+			Object obj = ctx.lookup(adresse);
+			
+			ServiceOeuvreRemote service = (ServiceOeuvreRemote) obj;
+			try{
+				service.creerArtiste(1, "Doisneau", "Robert");
+				service.creerArtiste(2, "Vermeer", "Johanees");
+				service.creerArtiste(3, "Brancusi", "Constantin");
+				service.creerArtiste(4, "Klimt", "Gustav");
+				service.creerOeuvre(1, urlDoisneau1, "Le baise de l'hotel de ville", 1950, 0, 0, 0, 0,1);
+			} catch(ArtisteDejaCreeException e) {
+				System.err.println("Artiste existant");
+			} catch(OeuvreDejaCreeException e) {
+				System.err.println("Oeuvre existante");
+			} /*catch(ArtisteInconnuException e) {
+				System.err.println("Artiste inconnu");
+			} catch(OeuvreInconnueException e) {
+				System.err.println("Oeuvre inconnue");
+			}*/
+			for(Oeuvre o : service.getOeuvres()){
+				System.out.println("----------" +
+						 o.getTitre() + "--------" + o.getArtiste().getNom());
+			}
+	    } catch(NamingException e0) {
+	        System.err.println("Erreur:"+e0.getMessage() ) ;
 		}
 	}
 }
