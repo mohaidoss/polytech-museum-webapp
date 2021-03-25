@@ -11,14 +11,14 @@ public class Categorie implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@ManyToMany(mappedBy="categories") Set<Oeuvre> oeuvres;
 	@Id
-	@Column private String Intitule;
+	@Column private String intitule;
 	
 	public void setIntitule(String intitule) {
-		Intitule = intitule;
+		this.intitule = intitule;
 	}
 	
 	public String getIntitule(){
-		return this.Intitule;
+		return this.intitule;
 	}
 
 	public Set<Oeuvre> getOeuvres() {

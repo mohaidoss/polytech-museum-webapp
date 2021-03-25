@@ -31,12 +31,27 @@ public class Main {
 				service.creerArtiste(2, "Vermeer", "Johanees");
 				service.creerArtiste(3, "Brancusi", "Constantin");
 				service.creerArtiste(4, "Klimt", "Gustav");
-				service.creerOeuvre(1, urlDoisneau1, "Le baise de l'hotel de ville", 1950, 0, 0, 0, 0,1);
+				service.creerOeuvre(1, urlDoisneau1, "Le baise de l'hotel de ville", 1950, ServiceOeuvreRemote.TypeOeuvre.PHOTO,1);
+				service.creerOeuvre(2, urlDoisneau2, "L'information scolaire", 1956, ServiceOeuvreRemote.TypeOeuvre.PHOTO, 1);
+				service.creerOeuvre(3, urlDoisneau3, "Fox-terrier au pont des Arts", 1953, ServiceOeuvreRemote.TypeOeuvre.PHOTO, 1);
+				service.creerOeuvre(4, urlVermeer1, "La jeune fille à la perle", 1665, ServiceOeuvreRemote.TypeOeuvre.PEINTURE, 2);
+				service.creerOeuvre(5, urlKlimt1, "Le baiser", 1909, ServiceOeuvreRemote.TypeOeuvre.PEINTURE, 4);
+				service.creerOeuvre(6, urlVermeer2, "La laitière", 1665, ServiceOeuvreRemote.TypeOeuvre.PEINTURE, 2);
+				service.creerOeuvre(7, urlBrancusi1, "Le baiser", 1909, ServiceOeuvreRemote.TypeOeuvre.SCULPTURE, 3);
+				service.creerCategorie("Paris");
+				service.creerCategorie("Personnages");
+				service.creerCategorie("Noir et Blanc");
+				service.creerCategorie("Baiser");
+				service.creerCategorie("Portrait");
+				service.creerCategorie("Travail");
 			} catch(ArtisteDejaCreeException e) {
 				System.err.println("Artiste existant");
 			} catch(OeuvreDejaCreeException e) {
 				System.err.println("Oeuvre existante");
-			} /*catch(ArtisteInconnuException e) {
+			} catch(CategorieDejaCreeException e) {
+				System.err.println("Categorie existante");
+			}/*catch(ArtisteInconnuException e) {
+			}
 				System.err.println("Artiste inconnu");
 			} catch(OeuvreInconnueException e) {
 				System.err.println("Oeuvre inconnue");

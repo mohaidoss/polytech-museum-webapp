@@ -11,7 +11,7 @@ implements ServiceOeuvreLocal, ServiceOeuvreRemote	{
 @PersistenceContext(unitName="musees")
 protected EntityManager em;
 	@Override
-	public void creerOeuvre(int Id, String URL, String titre, int annee, int score, int aime, int aimepas, int sansavis, int artiste_num)
+	public void creerOeuvre(int Id, String URL, String titre, int annee, TypeOeuvre type, int artiste_num)
 			throws OeuvreDejaCreeException {
 		Oeuvre o = null;
 		try{
@@ -19,11 +19,20 @@ protected EntityManager em;
 			if(o != null)
 				throw new OeuvreDejaCreeException();
 		} catch (OeuvreInconnueException e){
-			o = new Oeuvre();
+			if (type == TypeOeuvre.PEINTURE)
+				o = new OeuvrePeinture();
+			else if (type == TypeOeuvre.PHOTO)
+				o = new OeuvrePhoto();
+			else if (type == TypeOeuvre.SCULPTURE)
+				o = new OeuvreSculpture();
 			o.setId(Id);
 			o.setURL(URL);
 			o.setTitre(titre);
 			o.setAnnee(annee);
+			o.setAime(0);
+			o.setAimepas(0);
+			o.setSansavis(0);
+			o.setScore(0);
 			try {
 				o.setArtiste(this.getArtiste(artiste_num));
 			} catch (ArtisteInconnuException e1) {

@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class Oeuvre implements Serializable{
+public abstract class Oeuvre implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -16,16 +16,16 @@ public class Oeuvre implements Serializable{
 	}
 	@Id
 	@Column private int Id;
-	@Column(length=100) private String URL;
+	@Column(length=1000) private String URL;
 	@Column private String titre;
 	@Column private int annee;
 	
 	@ManyToMany(fetch=FetchType.EAGER) private Set<Categorie> categories;
 	@ManyToOne(fetch=FetchType.EAGER) private Artiste artiste;
 	@Column private int score;
-	private int aime;
-	private int aimepas;
-	private int sansavis;
+	@Column private int aime;
+	@Column private int aimepas;
+	@Column private int sansavis;
 
 	
 	public String getURL() {
