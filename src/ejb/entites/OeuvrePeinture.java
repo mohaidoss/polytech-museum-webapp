@@ -7,8 +7,10 @@ public class OeuvrePeinture extends Oeuvre {
 	public int getScore() {
 		return score;
 	}
-	public void setScore(int score) {
-		this.score = score;
+	public void setScore() {
+		this.score = this.getAime() - this.getAimepas();
+		if (this.score < 0)
+			this.score = 0;
 	}
 	
 }

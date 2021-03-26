@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+@Inheritance(strategy=javax.persistence.InheritanceType.SINGLE_TABLE)
 @Entity
 @Table
 public abstract class Oeuvre implements Serializable{
@@ -55,9 +56,7 @@ public abstract class Oeuvre implements Serializable{
 	public int getScore() {
 		return score;
 	}
-	public void setScore(int score) {
-		this.score = score;
-	}
+	public abstract void setScore();
 	public void setId(int id) {
 		Id = id;
 	}

@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import ejb.sessions.* ;
+import ejb.sessions.ServiceOeuvre.Vote;
 
 import ejb.entites.* ;
 
@@ -23,10 +24,10 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-@WebServlet(value={"oeuvre","categorie"})
+@WebServlet(value={"vueOeuvres","vueCategorie","avis"})
 public class Controleur extends HttpServlet {
   private static final long serialVersionUID = 1L;
-  
+  @javax.ejb.EJB private ServiceOeuvreLocal service;
   
   
   public Controleur() {}
@@ -34,8 +35,42 @@ public class Controleur extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
   throws ServletException, IOException {
     String url = request.getRequestURL().toString();
-    String maVue="index.jsp" ;
-    
+    String maVue="/vueCategorie.jsp" ;
+    if(url.endsWith("/vueCategorie")){
+            maVue="/vueCategorie.jsp" ;
+           Collection<Categorie> categorie = service.getCategories();
+           request.setAttribute("Categories", categorie);
+    }else if(url.endsWith("/vueOeuvres")){
+            maVue="/vueOeuvres.jsp";
+            Collection<Oeuvre> oeuvre = service.getOeuvres();
+            request.setAttribute("oeuvre", oeuvre);
+            String intitule=request.getParameter("categ");
+            
+    } else if(url.endsWith("/avis")){
+    	
+    	String avisGet = request.getParameter("avis");
+    	String idGet = request.getParameter("id");
+    	int id = Integer.parseInt(idGet);
+    	System.out.println(avisGet + " " + id);
+    	Vote res;
+    	if (avisGet.equals("1"))
+    		res = Vote.AIME;
+    	else if (avisGet.equals("2"))
+    		res = Vote.AIMEPAS;
+    	else
+    		res = Vote.SANSAVIS;
+    	maVue="/vueOeuvres.jsp";
+    	String message;
+    	try{
+    		service.DonnerAvis(id, res);
+    		message = "Confirmation du vote sur l'oeuvre " + service.getOeuvre(id).getTitre();
+    	} catch (OeuvreInconnueException e) {
+    		message = "Oeuvre inconnue" + idGet;
+    	}
+    	Collection<Oeuvre> oeuvre = service.getOeuvres();
+        request.setAttribute("oeuvre", oeuvre);
+    	request.setAttribute("message", message);
+    }
 	
 	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(maVue);
     dispatcher.forward(request,response);

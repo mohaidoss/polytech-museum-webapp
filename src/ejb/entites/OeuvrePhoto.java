@@ -8,7 +8,7 @@ public class OeuvrePhoto extends Oeuvre {
 	public int getScore() {
 		return score;
 	}
-	public void setScore(int score) {
-		this.score = score;
+	public void setScore() {
+		this.score = this.getAime();
 	}
 }

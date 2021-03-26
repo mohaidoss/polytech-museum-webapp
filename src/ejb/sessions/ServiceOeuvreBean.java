@@ -32,7 +32,7 @@ protected EntityManager em;
 			o.setAime(0);
 			o.setAimepas(0);
 			o.setSansavis(0);
-			o.setScore(0);
+			o.setScore();
 			try {
 				o.setArtiste(this.getArtiste(artiste_num));
 			} catch (ArtisteInconnuException e1) {
@@ -142,6 +142,7 @@ protected EntityManager em;
 			o.setAimepas(o.getAimepas() + 1);
 		else if(avis == Vote.SANSAVIS)
 			o.setSansavis(o.getSansavis() + 1);
+		o.setScore();
 		em.persist(o);
 	}
 
