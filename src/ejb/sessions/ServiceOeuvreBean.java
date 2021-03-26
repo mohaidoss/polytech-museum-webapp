@@ -129,7 +129,7 @@ protected EntityManager em;
 
 	@Override
 	public Collection<Oeuvre> OeuvreParCategorie(String IntituleCategorie) throws CategorieInconnueException {
-		Collection<Oeuvre> resultList = (Collection<Oeuvre>) em.createQuery("select o from Oeuvre where Oeuvre.categories =:intitule").setParameter("intitule", IntituleCategorie).getResultList();
+		Collection<Oeuvre> resultList = (Collection<Oeuvre>) em.createQuery("select o from Oeuvre o join o.categories  c where c.intitule=:intitule").setParameter("intitule", IntituleCategorie).getResultList();
 		return resultList;
 	}
 

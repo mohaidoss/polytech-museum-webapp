@@ -42,9 +42,17 @@ public class Controleur extends HttpServlet {
            request.setAttribute("Categories", categorie);
     }else if(url.endsWith("/vueOeuvres")){
             maVue="/vueOeuvres.jsp";
-            Collection<Oeuvre> oeuvre = service.getOeuvres();
-            request.setAttribute("oeuvre", oeuvre);
             String intitule=request.getParameter("categ");
+            Collection<Oeuvre> oeuvre;
+            try {
+            	oeuvre = service.OeuvreParCategorie(intitule);
+            }
+            catch (Exception e){
+            	oeuvre = service.getOeuvres();
+            }
+            request.setAttribute("Categories", intitule);
+            request.setAttribute("oeuvre", oeuvre);
+            
             
     } else if(url.endsWith("/avis")){
     	
@@ -59,7 +67,6 @@ public class Controleur extends HttpServlet {
     		res = Vote.AIMEPAS;
     	else
     		res = Vote.SANSAVIS;
-    	maVue="/vueOeuvres.jsp";
     	String message;
     	try{
     		service.DonnerAvis(id, res);
@@ -67,7 +74,15 @@ public class Controleur extends HttpServlet {
     	} catch (OeuvreInconnueException e) {
     		message = "Oeuvre inconnue" + idGet;
     	}
-    	Collection<Oeuvre> oeuvre = service.getOeuvres();
+        String intitule=request.getParameter("categ");
+    	Collection<Oeuvre> oeuvre;
+    	try {
+        	oeuvre = service.OeuvreParCategorie(intitule);
+        }
+        catch (Exception e){
+        	oeuvre = service.getOeuvres();
+        }
+    	maVue="/vueOeuvres?categ=" + intitule;
         request.setAttribute("oeuvre", oeuvre);
     	request.setAttribute("message", message);
     }
