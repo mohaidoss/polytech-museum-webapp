@@ -29,7 +29,7 @@
   				</table>
   				<br>
           		<form action="avis" method="get">
-          		<input type="hidden" name="categ" value=${Categories}>
+          		<input type="hidden" name="categ" value="${Categories}">
           		<input type="hidden" name="id" value=${oeuvre.id}>
           		J'aime:<input type="radio" name="avis" value="1">
           		J'aime pas:<input type="radio" name="avis" value="2">
