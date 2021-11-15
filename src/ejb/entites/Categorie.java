@@ -29,5 +29,4 @@ public class Categorie implements Serializable{
 	}
 
 	
-	@ManyToMany(mappedBy="categories") Set<Oeuvre> oeuvres;
 }
