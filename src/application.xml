@@ -4,21 +4,6 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="6"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd">
  
   <display-name>Musees virtuels</display-name>
-<<<<<<< HEAD
-  <module>
-    <web>
-      <web-uri>musees.war</web-uri>
-      <context-root>Musee</context-root>
-    </web>
-  </module>
-  <module>
-    <ejb>museesSessions.jar</ejb>
-  </module>
-  <module>
-    <ejb>museesEntites.jar</ejb>
-  </module>
-</application>
-=======
 
    <module>
     <ejb>museesEntites.jar</ejb>
@@ -36,4 +21,3 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   
 </application>
 
->>>>>>> 6acdbb786eb5ec9ff1075db25b48a8a33146c1a1

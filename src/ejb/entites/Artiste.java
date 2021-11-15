@@ -20,14 +20,6 @@ public class Artiste implements Serializable{
 		return this.Num;
 	}
 	
-<<<<<<< HEAD
-	@Column private int Num;
-	@Column private String Nom;
-	@Column private String Prenom;
-	@OneToMany(mappedBy=artiste) Set<Oeuvre> oeuvres;
-	
-
-=======
 	public Set<Oeuvre> getOeuvres() {
 		return oeuvres;
 	}
@@ -51,5 +43,5 @@ public class Artiste implements Serializable{
 	public void setNum(int num) {
 		Num = num;
 	}
->>>>>>> 6acdbb786eb5ec9ff1075db25b48a8a33146c1a1
+
 }
