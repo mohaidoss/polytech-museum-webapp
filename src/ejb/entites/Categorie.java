@@ -9,13 +9,25 @@ import javax.persistence.*;
 @Table
 public class Categorie implements Serializable{
 	private static final long serialVersionUID = 1L;
+	@ManyToMany(mappedBy="categories") Set<Oeuvre> oeuvres;
+	@Id
+	@Column private String intitule;
 	
-	@Id @GeneratedValue
-	public int getIntitule(){
-		return this.Intitule;
+	public void setIntitule(String intitule) {
+		this.intitule = intitule;
 	}
 	
-	@Column private String Intitule;
+	public String getIntitule(){
+		return this.intitule;
+	}
+
+	public Set<Oeuvre> getOeuvres() {
+		return oeuvres;
+	}
+	public void setOeuvres(Set<Oeuvre> oeuvres) {
+		this.oeuvres = oeuvres;
+	}
+
 	
 	@ManyToMany(mappedBy="categories") Set<Oeuvre> oeuvres;
 }
